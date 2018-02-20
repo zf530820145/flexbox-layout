@@ -66,14 +66,20 @@ internal class RecyclerViewFragment : Fragment() {
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT)
             fragmentHelper.setFlexItemAttributes(lp)
-            adapter.addItem(lp)
+            val newItems = adapter.items.toMutableList()
+            newItems.add(newItems.size, lp)
+            adapter.addRandomItem(lp)
+//            adapter.updateItems(newItems)
+//            adapter.addItem(lp)
         }
         val removeFab: FloatingActionButton = activity.findViewById(R.id.remove_fab)
         removeFab.setOnClickListener(View.OnClickListener {
             if (adapter.itemCount == 0) {
                 return@OnClickListener
             }
-            adapter.removeItem(adapter.itemCount - 1)
+//            adapter.removeItem(adapter.itemCount - 1)
+//            adapter.removeItem(0)
+            adapter.removeRandomItem()
         })
     }
 
