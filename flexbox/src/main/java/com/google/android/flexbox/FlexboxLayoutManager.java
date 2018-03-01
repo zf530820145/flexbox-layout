@@ -191,6 +191,7 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
      * every time the calculation happens.
      */
     private FlexboxHelper.FlexLinesResult mFlexLinesResult = new FlexboxHelper.FlexLinesResult();
+    private int mMaxLine=Integer.MAX_VALUE;
 
     /**
      * Creates a default FlexboxLayoutManager.
@@ -512,6 +513,20 @@ public class FlexboxLayoutManager extends RecyclerView.LayoutManager implements 
     public void updateViewCache(int position, View view) {
         mViewCache.put(position, view);
     }
+
+    @Override
+    public void setMaxLine(int maxLine) {
+        if (mMaxLine != maxLine && maxLine > 0) {
+            mMaxLine = maxLine;
+            requestLayout();
+        }
+    }
+
+    @Override
+    public int getMaxLine() {
+        return mMaxLine > 0 ? mMaxLine : Integer.MAX_VALUE;
+    }
+
     // The end of methods from FlexContainer
 
     // ScrollVectorProvider method

@@ -192,6 +192,8 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
 
     private List<FlexLine> mFlexLines = new ArrayList<>();
 
+    private int mMaxLine = Integer.MAX_VALUE;
+
     /**
      * Used for receiving the calculation of the flex results to avoid creating a new instance
      * every time flex lines are calculated.
@@ -1341,6 +1343,19 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
         setDividerDrawableVertical(divider);
     }
 
+    @Override
+    public void setMaxLine(int maxLine) {
+        if (mMaxLine != maxLine && maxLine > 0) {
+            mMaxLine = maxLine;
+            requestLayout();
+        }
+    }
+
+    @Override
+    public int getMaxLine() {
+        return mMaxLine > 0 ? mMaxLine : Integer.MAX_VALUE;
+    }
+
     /**
      * Set a drawable to be used as a horizontal divider between items.
      *
@@ -1599,6 +1614,7 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
          */
         private boolean mWrapBefore;
 
+
         public LayoutParams(Context context, AttributeSet attrs) {
             super(context, attrs);
 
@@ -1672,6 +1688,7 @@ public class FlexboxLayout extends ViewGroup implements FlexContainer {
         public void setHeight(int height) {
             this.height = height;
         }
+
 
         @Override
         public int getOrder() {

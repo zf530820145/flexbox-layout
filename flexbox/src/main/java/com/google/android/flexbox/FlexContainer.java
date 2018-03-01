@@ -284,4 +284,8 @@ interface FlexContainer {
      * @param view     the view instance
      */
     void updateViewCache(int position, View view);
+
+    void setMaxLine(int maxLine);
+
+    int getMaxLine();
 }
